@@ -1,0 +1,4 @@
+React é feito para construir interfaces
+
+React Native é feito para construir interfaces para mobile
+Sendo as interfaces nativas.
