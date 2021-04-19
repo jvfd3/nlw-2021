@@ -1,25 +1,23 @@
 import React from 'react';
-
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Welcome } from './src/pages/Welcome';
 
-function App() {
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.view1}>
+      <Welcome/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  whiteText: {
+    color: 'white',
+  },
+  view1: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: '#000',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
-
-
-export default App();
