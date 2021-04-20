@@ -2,6 +2,7 @@ import React from 'react';
 import {
     StyleSheet,
     Text,
+    View,
     SafeAreaView,
     Image,
     TouchableOpacity,
@@ -15,27 +16,29 @@ export function Welcome () {
 
     return(
         <SafeAreaView style={[styles.view1,]}>
-            <Text style={[styles.title, styles.whiteText]}>
-                Gerencie {'\n'}
-                suas plantas {'\n'}
-                de forma fácil
-            </Text>
-            <Image
-                source={wateringImg}
-                style={[styles.image,]}
-                resizeMode="contain"
-            />
-            <Text style={[styles.subtitle, styles.whiteText]}>
-                Não esqueça mais de regar suas plantas.
-                Nós cuidamos de lembrar você sempre que precisar.
-            </Text>
-            
-            <TouchableOpacity
-                style={[styles.button,]}
-                activeOpacity={0.7}
-            >
-                <Feather name="chevron-right" style={styles.buttonIcon} />
-            </TouchableOpacity>
+            <View style={styles.wrapper}>
+                <Text style={[styles.title, styles.whiteText]}>
+                    Gerencie {'\n'}
+                    suas plantas de {'\n'}
+                    forma fácil
+                </Text>
+                <Image
+                    source={wateringImg}
+                    style={[styles.image,]}
+                    resizeMode="contain"
+                />
+                <Text style={[styles.subtitle, styles.whiteText]}>
+                    Não esqueça mais de regar suas plantas.
+                    Nós cuidamos de lembrar você sempre que precisar.
+                </Text>
+                
+                <TouchableOpacity
+                    style={[styles.button,]}
+                    activeOpacity={0.7}
+                >
+                    <Feather name="chevron-right" style={styles.buttonIcon} />
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }
@@ -44,9 +47,13 @@ export function Welcome () {
 const styles = StyleSheet.create({
     view1: {
       flex: 1,
-      backgroundColor: '#000',
-      alignItems: 'center',
-      justifyContent: 'space-around',
+    },
+    wrapper: {
+        flex: 1,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingHorizontal: 20,
     },
     title: {
         fontSize: 32,
