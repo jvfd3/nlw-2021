@@ -10,6 +10,7 @@ import {
 import {Feather} from '@expo/vector-icons';
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 export function Welcome () {
 
     return(
@@ -28,15 +29,12 @@ export function Welcome () {
                 Não esqueça mais de regar suas plantas.
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-
             
             <TouchableOpacity
                 style={[styles.button,]}
                 activeOpacity={0.7}
             >
-                <Text>
-                    <Feather name="chevron-right" style={styles.buttonIcon} />
-                </Text>
+                <Feather name="chevron-right" style={styles.buttonIcon} />
             </TouchableOpacity>
         </SafeAreaView>
     );
@@ -55,12 +53,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: colors.heading,
+        fontFamily: fonts.heading,
     },
     subtitle: {
         textAlign: 'center',
         fontSize: 18,
         paddingHorizontal: 20,
         color: colors.heading,
+        fontFamily: fonts.text,
     },
     image: {
         height: Dimensions.get('window').width*0.7,
