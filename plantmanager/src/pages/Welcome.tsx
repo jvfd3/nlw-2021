@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import {
+    StyleSheet,
+    Text,
+    SafeAreaView,
+    Image,
+    TouchableOpacity,
+    Dimensions,
+} from 'react-native';
+import {Feather} from '@expo/vector-icons';
 import wateringImg from '../assets/watering.png';
-import { Button } from '../Components/Button';
 import colors from '../styles/colors';
 export function Welcome () {
-
-    const [visible, setVisible] = React.useState(false);
-
-/*     function handleVisibility(){
-        setVisible(!visible);
-    } */
-
 
     return(
         <SafeAreaView style={[styles.view1,]}>
@@ -19,14 +19,25 @@ export function Welcome () {
                 suas plantas {'\n'}
                 de forma fácil
             </Text>
-            {   visible &&
-                <Image source={wateringImg} style={[styles.image,]} />
-            }
+            <Image
+                source={wateringImg}
+                style={[styles.image,]}
+                resizeMode="contain"
+            />
             <Text style={[styles.subtitle, styles.whiteText]}>
                 Não esqueça mais de regar suas plantas.
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-            <Button title='>' /* onPress={handleVisibility} */ />
+
+            
+            <TouchableOpacity
+                style={[styles.button,]}
+                activeOpacity={0.7}
+            >
+                <Text>
+                    <Feather name="chevron-right" style={styles.buttonIcon} />
+                </Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -37,7 +48,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#000',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'space-around',
     },
     title: {
         fontSize: 32,
@@ -51,6 +62,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         color: colors.heading,
     },
+    image: {
+        height: Dimensions.get('window').width*0.7,
+    },
     button: {
         backgroundColor: colors.green,
         justifyContent: 'center',
@@ -58,15 +72,11 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginBottom: 10,
         height: 56,
-        paddingHorizontal: 10,
+        width: 56,
     },
-    image: {
-        width: 292,
-        height: 284,
-    },
-    buttonText: {
+    buttonIcon: {
+        fontSize: 32,
         color: colors.white,
-        fontSize: 24,
     },
     whiteText: {
       color: 'white',
