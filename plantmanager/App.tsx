@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from 'expo-app-loading'
 import { Welcome } from './src/pages/Welcome';
 import {
   useFonts,
@@ -13,27 +13,6 @@ export default function App() {
   });
 
   if(fontsLoaded)
-    return(
-      <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}} >
-        <Text>
-          A fonte está carregando!
-        </Text>
-      </View>
-    )
-
-  return (
-      <Welcome/>
-  );
+    return <AppLoading/>
+  return <Welcome/>
 }
-
-const styles = StyleSheet.create({
-  whiteText: {
-    color: 'white',
-  },
-  view1: {
-    flex: 1,
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
