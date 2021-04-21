@@ -1,27 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
     View,
     Text,
     TextInput,
+    KeyboardAvoidingView,
+    Platform,
 } from 'react-native';
+
+import { Button } from '../Components/Button'
+
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import { useNavigation } from '@react-navigation/core';
 
 export function UserIdentification(){
+
+    const [isFocused, setIsFocused] = useState(false);
+    const [isFilled, setIsFilled] = useState(false);
+    const [name, setName] = useState<string>();
+    
+    const navigation = useNavigation();
+
+    
+    function handleSubmit(){
+        navigation.navigate('Confirmation');
+    };
+
+    function handleInputBlur(){
+        setIsFocused(false);
+        setIsFilled(!!name)
+    }
+    function handleInputFocus(){
+        setIsFocused(true);
+    }
+    function handleInputChange(value: string){
+        setIsFilled(!!value);
+        setName(value);
+    }
+
     return(
         <SafeAreaView style={styles.container} >
-            <View style={styles.form} >
-                <Text style={styles.title} >
-                    Como podemos {'\n'}
-                    chamar você?
-                </Text>
-                <Text style={styles.emoji} >
-                    💠
-                </Text>
-                <TextInput style={styles.input}/>
-            </View>
+            <KeyboardAvoidingView
+                style={styles.container}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
+                <View style={styles.form} >
+                    <View style={styles.header} >
+                        <Text style={styles.title} >
+                            Como podemos {'\n'}
+                            chamar você?
+                        </Text>
+                        <Text style={styles.emoji} >
+                            {isFilled ? '😎':'💠'} 
+                        </Text>
+                    </View>
+                    <TextInput
+                        style={[
+                            styles.input,
+                            {borderColor: 'white'},
+                            (isFocused || isFilled) &&
+                            {borderColor: colors.green}
+                        ]}
+                        placeholder="Digite um nome"
+                        onBlur={handleInputBlur}
+                        onFocus={handleInputFocus}
+                        onChangeText={handleInputChange}
+                    />
+                    <View style={styles.footer} >
+                        <Button title='Confirmar' onPress={handleSubmit} />
+                    </View>
+                </View>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 }
@@ -44,8 +95,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 54,
         justifyContent: 'center',
     },
+    header: {
+        alignItems: 'center',
+    },
     emoji: {
         fontSize:44,
+        color: 'white',
     },
     input: {
         borderBottomWidth: 1,
@@ -64,5 +119,11 @@ const styles = StyleSheet.create({
         color: colors.heading,
         fontFamily: fonts.heading,
         marginTop: 20,
+    },
+    footer: {
+        width: '100%',
+        marginTop: 40,
+        paddingHorizontal: 20,
+
     },
 }); 
